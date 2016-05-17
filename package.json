@@ -1,0 +1,23 @@
+{
+  "name": "timestamp-microservice",
+  "version": "0.0.1",
+  "description": "a little tool from freeCodeCamp's curriculum to check whether a provided string is a Unix timestamp or not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gangezilla/timestamp-microservice.git"
+  },
+  "author": "Scott Gangemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gangezilla/timestamp-microservice/issues"
+  },
+  "homepage": "https://github.com/Gangezilla/timestamp-microservice#readme",
+  "dependencies": {
+    "fs": "0.0.2",
+    "moment": "^2.13.0"
+  }
+}
