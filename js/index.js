@@ -5,6 +5,9 @@
 // User Story: If it does, it returns both the Unix timestamp and the natural language form of that date.
 
 // User Story: If it does not contain a date or Unix timestamp, it returns null for those properties.
+//new RegExp(/ab+c/, 'i');
+var dateMatch= /(0?[1-9]|[12][0-9]|3[01])[\s\.\\\/\|](\w+)[\s\.\\\/\|](\d+)/ig;
+//can use this regex to match somebody's date that they input, split it up, and use that to convert into a date.
 var fs = require('fs');
 var moment = require('moment');
 var output = {
@@ -18,7 +21,18 @@ if (input=="now" || input=="what time is it") {
     console.log("Hello! It is "+moment().format("MMMM DD, Y. HH:mm")+".");
     return;
 }
-check(process.argv[2]);
+//check(process.argv[2]);
+
+if (dateMatch.test(input)) {
+    checkUserDate(input);
+} else {check(input);}
+
+//if input matches regex string, go to regex function. else, execute check() function.
+
+function checkuserDate(string) {
+    var array = dateMatch.exec(string);
+    console.log(arr);
+}
 
 function check(string) {
     if (isNaN(string) === true) {
