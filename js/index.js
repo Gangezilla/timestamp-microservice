@@ -6,7 +6,7 @@
 
 // User Story: If it does not contain a date or Unix timestamp, it returns null for those properties.
 //new RegExp(/ab+c/, 'i');
-var dateMatch= /(0?[1-9]|[12][0-9]|3[01])[\s\.\\\/\|](\w+)[\s\.\\\/\|](\d+)/ig;
+var dateMatch= /(0?[1-9]|[12][0-9]|3[01])[\s\.\\\/\|](\D+)[\s\.\\\/\|](\d+)/;
 //can use this regex to match somebody's date that they input, split it up, and use that to convert into a date.
 var fs = require('fs');
 var moment = require('moment');
@@ -18,21 +18,29 @@ var output = {
 
 var input = process.argv[2];
 if (input=="now" || input=="what time is it") {
-    console.log("Hello! It is "+moment().format("MMMM DD, Y. HH:mm")+".");
+    console.log("Hello! It is "+moment().format("MMMM DD, Y HH:mm")+".");
     return;
 }
 //check(process.argv[2]);
 
 if (dateMatch.test(input)) {
     checkUserDate(input);
-} else {check(input);}
+} else {
+    check(input);
+}
 
 //if input matches regex string, go to regex function. else, execute check() function.
 
-function checkuserDate(string) {
-    var array = dateMatch.exec(string);
+function checkUserDate(string) {
+    var arr = dateMatch.exec(string);
     console.log(arr);
+    var monthName = new Date(arr[2] + " 1, 1970");
+    var monthDigit = monthName.getMonth()+1;
+    var newDate=arr[1]+'/'+monthDigit+'/'+arr[3];
+    console.log(newDate);
+    check(newDate);
 }
+//cool, so we can loop through to concatenate a string now, right? 31 in first, then figure out what month it corresponds to (switch statement) and then push that up to the 31, then push the year up against it. 
 
 function check(string) {
     if (isNaN(string) === true) {
