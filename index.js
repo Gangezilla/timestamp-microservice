@@ -1,6 +1,6 @@
 var express = require('express');
 var moment = require('moment');
-var path=require('path');
+var path = require('path');
 
 var dateMatch = /(0?[1-9]|[12][0-9]|3[01])[\s\.\\\/\|](\D+)[\s\.\\\/\|](\d+)/;
 var output = {
@@ -9,17 +9,10 @@ var output = {
     "speech": null
 };
 var input = '';
-
 var app = express();
-//app.use(express.static(__dirname)); // Current directory is root
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, 'public')));
 var port = process.env.PORT || 8080;
 app.listen(port);
-
-
-// app.get('/', function(req, res) {
-//     //res.sendFile('index.html', {'root': '../'});
-// });
 
 app.get('/:timestamp', function(req, res) {
     input = req.params.timestamp;
