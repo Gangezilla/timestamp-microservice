@@ -11,8 +11,10 @@ var output = {
 var input = '';
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-var port = process.env.PORT || 8080;
-app.listen(port);
+app.set('port', (process.env.PORT || 8080));
+app.listen(app.get('port'), function() {
+    console.log("Hi there, I'm listening on " + app.get('port') + ".");
+});
 
 app.get('/:timestamp', function(req, res) {
     input = req.params.timestamp;
